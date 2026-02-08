@@ -184,6 +184,8 @@
 	<!-- The teaser can be used when a better snippet is not available -->
 	<copyField source="content" dest="teaser" maxChars="300" />
 
+	<!-- Copy content to vectorContent for embedding generation via textToVector URP -->
+	<copyField source="content" dest="vectorContent" maxChars="2000" />
 
 	<!--
 		Dynamic field definitions. If a field name is not found, dynamic
@@ -275,7 +277,7 @@
 	<dynamicField name="*_currency"  type="currency"  indexed="true" stored="true" multiValued="false" />
 
 	<field name="vectorContent" type="string" indexed="false" stored="false"/>
-	<field name="vector" type="knn_vector" indexed="true" stored="false"/>
+	<field name="vector" type="knn_vector" indexed="true" stored="true"/>
 
 	<!--
 		The following causes solr to ignore any fields that don't already
