@@ -1,0 +1,23 @@
+{
+    "name": "dkd/solr-semantic-mlt",
+    "type": "typo3-cms-extension",
+    "description": "Semantic More Like This for TYPO3 — hybrid semantic + lexical similar content powered by Apache Solr",
+    "license": "Apache-2.0",
+    "require": {
+        "php": "^8.2",
+        "typo3/cms-core": "^13.4",
+        "typo3/cms-extbase": "^13.4",
+        "typo3/cms-fluid": "^13.4",
+        "apache-solr-for-typo3/solr": "^13.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dkd\\SolrSemanticMlt\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "solr_semantic_mlt"
+        }
+    }
+}

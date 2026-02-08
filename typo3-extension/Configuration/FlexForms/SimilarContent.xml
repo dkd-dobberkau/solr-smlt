@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>LLL:EXT:solr_semantic_mlt/Resources/Private/Language/locallang.xlf:flexform.sheet.default</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.count>
+                        <label>LLL:EXT:solr_semantic_mlt/Resources/Private/Language/locallang.xlf:flexform.count</label>
+                        <config>
+                            <type>number</type>
+                            <default>5</default>
+                            <range>
+                                <lower>1</lower>
+                                <upper>50</upper>
+                            </range>
+                        </config>
+                    </settings.count>
+                    <settings.mode>
+                        <label>LLL:EXT:solr_semantic_mlt/Resources/Private/Language/locallang.xlf:flexform.mode</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items>
+                                <numIndex index="0">
+                                    <label>LLL:EXT:solr_semantic_mlt/Resources/Private/Language/locallang.xlf:flexform.mode.hybrid</label>
+                                    <value>hybrid</value>
+                                </numIndex>
+                                <numIndex index="1">
+                                    <label>LLL:EXT:solr_semantic_mlt/Resources/Private/Language/locallang.xlf:flexform.mode.vector_only</label>
+                                    <value>vector_only</value>
+                                </numIndex>
+                                <numIndex index="2">
+                                    <label>LLL:EXT:solr_semantic_mlt/Resources/Private/Language/locallang.xlf:flexform.mode.mlt_only</label>
+                                    <value>mlt_only</value>
+                                </numIndex>
+                            </items>
+                            <default>hybrid</default>
+                        </config>
+                    </settings.mode>
+                    <settings.vectorWeight>
+                        <label>LLL:EXT:solr_semantic_mlt/Resources/Private/Language/locallang.xlf:flexform.vectorWeight</label>
+                        <config>
+                            <type>number</type>
+                            <format>decimal</format>
+                            <default>0.7</default>
+                            <range>
+                                <lower>0</lower>
+                                <upper>1</upper>
+                            </range>
+                        </config>
+                    </settings.vectorWeight>
+                    <settings.mltWeight>
+                        <label>LLL:EXT:solr_semantic_mlt/Resources/Private/Language/locallang.xlf:flexform.mltWeight</label>
+                        <config>
+                            <type>number</type>
+                            <format>decimal</format>
+                            <default>0.3</default>
+                            <range>
+                                <lower>0</lower>
+                                <upper>1</upper>
+                            </range>
+                        </config>
+                    </settings.mltWeight>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

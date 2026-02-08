@@ -1,0 +1,7 @@
+plugin.tx_solrsemanticmlt {
+    view {
+        templateRootPaths.0 = {$plugin.tx_solrsemanticmlt.view.templateRootPath}
+        partialRootPaths.0 = {$plugin.tx_solrsemanticmlt.view.partialRootPath}
+        layoutRootPaths.0 = {$plugin.tx_solrsemanticmlt.view.layoutRootPath}
+    }
+}

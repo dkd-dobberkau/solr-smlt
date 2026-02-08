@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Dkd\SolrSemanticMlt\:
+    resource: '../Classes/*'
+
+  Dkd\SolrSemanticMlt\Service\SmltService:
+    public: true
+
+  Dkd\SolrSemanticMlt\ViewHelpers\SimilarContentViewHelper:
+    public: true

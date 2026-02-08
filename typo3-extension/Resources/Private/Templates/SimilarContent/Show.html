@@ -1,0 +1,25 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{documents}">
+    <f:then>
+        <div class="smlt-similar-content">
+            <f:for each="{documents}" as="doc">
+                <div class="smlt-similar-content__item">
+                    <f:if condition="{doc.url}">
+                        <f:then>
+                            <a href="{doc.url}" class="smlt-similar-content__link">
+                                {doc.title}
+                            </a>
+                        </f:then>
+                        <f:else>
+                            <span class="smlt-similar-content__title">{doc.title}</span>
+                        </f:else>
+                    </f:if>
+                </div>
+            </f:for>
+        </div>
+    </f:then>
+</f:if>
+
+</html>

@@ -1,0 +1,7 @@
+plugin.tx_solrsemanticmlt {
+    view {
+        templateRootPath = EXT:solr_semantic_mlt/Resources/Private/Templates/
+        partialRootPath = EXT:solr_semantic_mlt/Resources/Private/Partials/
+        layoutRootPath = EXT:solr_semantic_mlt/Resources/Private/Layouts/
+    }
+}

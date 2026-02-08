@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="messages" date="2026-02-08T00:00:00Z" product-name="solr_semantic_mlt">
+        <body>
+            <trans-unit id="plugin.similarcontent.title">
+                <source>Similar Content (SMLT)</source>
+            </trans-unit>
+            <trans-unit id="plugin.similarcontent.description">
+                <source>Displays semantically similar content using hybrid vector + lexical search</source>
+            </trans-unit>
+            <trans-unit id="plugin.tab.settings">
+                <source>SMLT Settings</source>
+            </trans-unit>
+            <trans-unit id="flexform.sheet.default">
+                <source>Settings</source>
+            </trans-unit>
+            <trans-unit id="flexform.count">
+                <source>Number of similar documents</source>
+            </trans-unit>
+            <trans-unit id="flexform.mode">
+                <source>Search mode</source>
+            </trans-unit>
+            <trans-unit id="flexform.mode.hybrid">
+                <source>Hybrid (vector + lexical)</source>
+            </trans-unit>
+            <trans-unit id="flexform.mode.vector_only">
+                <source>Vector only (semantic)</source>
+            </trans-unit>
+            <trans-unit id="flexform.mode.mlt_only">
+                <source>MLT only (lexical)</source>
+            </trans-unit>
+            <trans-unit id="flexform.vectorWeight">
+                <source>Vector weight (0.0 – 1.0)</source>
+            </trans-unit>
+            <trans-unit id="flexform.mltWeight">
+                <source>MLT weight (0.0 – 1.0)</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
