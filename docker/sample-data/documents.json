@@ -1,0 +1,86 @@
+[
+  {
+    "id": "doc1",
+    "title": "Introduction to Machine Learning",
+    "content": "Machine learning is a subset of artificial intelligence that focuses on algorithms which learn from data. Supervised learning, unsupervised learning and reinforcement learning are the three main paradigms. Neural networks have become the dominant approach in recent years.",
+    "category": "AI",
+    "content_vector": [0.91, 0.85, 0.12, 0.05, 0.08, 0.15, 0.03, 0.10]
+  },
+  {
+    "id": "doc2",
+    "title": "Deep Learning and Neural Networks",
+    "content": "Deep learning uses multi-layered neural networks to model complex patterns in data. Convolutional networks excel at image recognition while transformers have revolutionized natural language processing. Training deep models requires significant computational resources.",
+    "category": "AI",
+    "content_vector": [0.88, 0.90, 0.15, 0.03, 0.10, 0.12, 0.05, 0.08]
+  },
+  {
+    "id": "doc3",
+    "title": "Natural Language Processing with Transformers",
+    "content": "Transformers use self-attention mechanisms to process sequential data. Models like BERT and GPT have achieved remarkable results in text understanding and generation. Embeddings capture semantic meaning of words and sentences in dense vector spaces.",
+    "category": "AI",
+    "content_vector": [0.85, 0.82, 0.20, 0.08, 0.12, 0.18, 0.07, 0.15]
+  },
+  {
+    "id": "doc4",
+    "title": "Search Engine Architecture",
+    "content": "Modern search engines combine inverted indices for fast term lookup with vector databases for semantic retrieval. Apache Solr and Elasticsearch are popular open source search platforms. Hybrid search merges lexical and neural ranking signals.",
+    "category": "Search",
+    "content_vector": [0.55, 0.50, 0.88, 0.82, 0.15, 0.10, 0.08, 0.12]
+  },
+  {
+    "id": "doc5",
+    "title": "Apache Solr Vector Search",
+    "content": "Apache Solr supports dense vector search through the DenseVectorField type since version 9.0. The KNN query parser enables approximate nearest neighbor search using HNSW graphs. Vector search can be combined with traditional text search for hybrid retrieval.",
+    "category": "Search",
+    "content_vector": [0.60, 0.55, 0.92, 0.90, 0.12, 0.08, 0.10, 0.15]
+  },
+  {
+    "id": "doc6",
+    "title": "Information Retrieval Fundamentals",
+    "content": "Information retrieval deals with finding relevant documents from a large collection. TF-IDF and BM25 are classical scoring functions. The field has evolved from pure keyword matching to incorporate semantic understanding through embeddings and language models.",
+    "category": "Search",
+    "content_vector": [0.65, 0.60, 0.85, 0.78, 0.18, 0.15, 0.12, 0.20]
+  },
+  {
+    "id": "doc7",
+    "title": "TYPO3 Content Management",
+    "content": "TYPO3 is an enterprise open source content management system written in PHP. It powers thousands of websites worldwide with its flexible page tree structure and extension architecture. The community develops and maintains over 6000 extensions.",
+    "category": "CMS",
+    "content_vector": [0.15, 0.10, 0.25, 0.20, 0.90, 0.88, 0.82, 0.12]
+  },
+  {
+    "id": "doc8",
+    "title": "TYPO3 Solr Integration",
+    "content": "The EXT:solr extension integrates Apache Solr search into TYPO3 websites. It provides automatic content indexing, faceted search, and suggest functionality. The extension supports custom document types and field processing through signal slot architecture.",
+    "category": "CMS",
+    "content_vector": [0.40, 0.35, 0.70, 0.65, 0.80, 0.75, 0.70, 0.15]
+  },
+  {
+    "id": "doc9",
+    "title": "Open Source Community Governance",
+    "content": "Successful open source projects require clear governance structures. Foundations like the Apache Software Foundation and community associations provide legal frameworks and decision-making processes. Contributor agreements and democratic elections ensure sustainable development.",
+    "category": "Community",
+    "content_vector": [0.10, 0.08, 0.15, 0.12, 0.75, 0.80, 0.90, 0.85]
+  },
+  {
+    "id": "doc10",
+    "title": "Building Developer Communities",
+    "content": "Developer communities thrive on shared values, transparent communication and mutual recognition. Conferences, sprints and online forums create spaces for knowledge exchange. The gift economy model where contributors share freely creates strong social bonds.",
+    "category": "Community",
+    "content_vector": [0.08, 0.12, 0.10, 0.15, 0.70, 0.78, 0.88, 0.92]
+  },
+  {
+    "id": "doc11",
+    "title": "Vector Embeddings for Semantic Search",
+    "content": "Vector embeddings represent text as dense numerical arrays capturing semantic meaning. Similar concepts map to nearby points in the vector space. Models like sentence-transformers generate embeddings suitable for search, clustering and recommendation tasks.",
+    "category": "AI",
+    "content_vector": [0.78, 0.75, 0.80, 0.72, 0.10, 0.12, 0.08, 0.15]
+  },
+  {
+    "id": "doc12",
+    "title": "Enterprise Web Development with PHP",
+    "content": "PHP remains a dominant language for enterprise web applications. Modern PHP with type safety, attributes and fibers offers robust foundations for content management and e-commerce platforms. Frameworks like Symfony provide structured approaches to complex applications.",
+    "category": "CMS",
+    "content_vector": [0.12, 0.10, 0.20, 0.18, 0.85, 0.82, 0.75, 0.10]
+  }
+]

@@ -1,0 +1,104 @@
+###############################################################################
+# Semantic More Like This – Docker Compose
+#
+# Startet Apache Solr 9.10.1 mit dem SMLT-Plugin, baut das Plugin per Maven
+# und lädt Beispieldaten mit vorberechneten Vektoren.
+#
+# Usage:
+#   docker compose up --build
+#   # Solr UI:  http://localhost:8983
+#   # Test:     curl "http://localhost:8983/solr/smlt_demo/smlt?smlt.id=doc1&smlt.count=5"
+#
+# Tear down:
+#   docker compose down -v
+###############################################################################
+
+services:
+
+  # ── 1. Maven Build ──────────────────────────────────────────────────────────
+  # Compiles the SMLT plugin JAR. Runs once, then exits.
+  builder:
+    image: maven:3.9-eclipse-temurin-17
+    working_dir: /build
+    volumes:
+      - ./:/build
+      - maven-cache:/root/.m2
+    command: >
+      mvn clean package -DskipTests -q
+    healthcheck:
+      test: ["CMD", "test", "-f", "/build/target/solr-semantic-mlt-1.0.0-SNAPSHOT.jar"]
+      interval: 5s
+      retries: 30
+
+  # ── 2. Apache Solr 9.10.1 ───────────────────────────────────────────────────
+  solr:
+    image: solr:9.10.1
+    container_name: smlt-solr
+    ports:
+      - "8983:8983"
+    volumes:
+      - ./target:/opt/solr/plugins:ro
+      - ./docker/solr/configsets/smlt_demo:/opt/solr/server/solr/configsets/smlt_demo:ro
+    environment:
+      - SOLR_OPTS=-Dsolr.config.lib.enabled=true
+    depends_on:
+      builder:
+        condition: service_completed_successfully
+    entrypoint: []
+    command:
+      - bash
+      - -c
+      - |
+        init-var-solr
+        export SOLR_OPTS='-Dsolr.config.lib.enabled=true'
+
+        echo '── Starting Solr ──'
+        /opt/solr/bin/solr start -f &
+        SOLR_PID=$$!
+
+        echo '── Waiting for Solr to be ready ──'
+        until curl -sf http://localhost:8983/solr/admin/info/system > /dev/null 2>&1; do
+          sleep 2
+        done
+
+        echo '── Creating smlt_demo collection ──'
+        /opt/solr/bin/solr create_core -c smlt_demo -d /opt/solr/server/solr/configsets/smlt_demo || true
+
+        echo '── Solr is ready at http://localhost:8983 ──'
+        wait $$SOLR_PID
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8983/solr/smlt_demo/admin/ping || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  # ── 3. Sample Data Loader ───────────────────────────────────────────────────
+  # Indexes example documents with pre-computed 8-dim vectors (demo size).
+  dataloader:
+    image: curlimages/curl:latest
+    depends_on:
+      solr:
+        condition: service_healthy
+    volumes:
+      - ./docker/sample-data:/data:ro
+    entrypoint: []
+    command:
+      - sh
+      - -c
+      - |
+        echo '── Loading sample data into smlt_demo ──'
+        curl -sf -X POST 'http://solr:8983/solr/smlt_demo/update?commit=true' \
+          -H 'Content-Type: application/json' \
+          -d @/data/documents.json
+        echo ''
+        echo '── Verifying index ──'
+        curl -sf 'http://solr:8983/solr/smlt_demo/select?q=*:*&rows=0' | grep numFound
+        echo ''
+        echo ''
+        echo '══════════════════════════════════════════════════════════'
+        echo '  SMLT Demo ready!'
+        echo '  Try: curl http://localhost:8983/solr/smlt_demo/smlt?smlt.id=doc1'
+        echo '══════════════════════════════════════════════════════════'
+
+volumes:
+  maven-cache:

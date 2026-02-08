@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  solrconfig.xml for SMLT Demo Collection
+-->
+<config>
+  <luceneMatchVersion>9.12</luceneMatchVersion>
+
+  <!-- Load the Semantic MLT plugin -->
+  <lib dir="/opt/solr/plugins" regex="solr-semantic-mlt-.*\.jar" />
+
+  <!-- Schema factory -->
+  <schemaFactory class="ClassicIndexSchemaFactory"/>
+
+  <!-- Codec for HNSW vector indexing -->
+  <codecFactory class="solr.SchemaCodecFactory"/>
+
+  <!-- Update handler -->
+  <updateHandler class="solr.DirectUpdateHandler2">
+    <autoCommit>
+      <maxTime>15000</maxTime>
+      <openSearcher>true</openSearcher>
+    </autoCommit>
+  </updateHandler>
+
+  <!-- ── Register Semantic MLT Component ──────────────────────────── -->
+  <searchComponent name="semanticMLT"
+      class="org.apache.solr.handler.component.SemanticMoreLikeThisComponent">
+    <str name="defaultVectorField">content_vector</str>
+    <str name="defaultMltFields">title,content</str>
+    <int name="defaultCount">10</int>
+    <float name="defaultMltWeight">0.3</float>
+    <float name="defaultVectorWeight">0.7</float>
+  </searchComponent>
+
+  <!-- ── Standard /select handler with SMLT ───────────────────────── -->
+  <requestHandler name="/select" class="solr.SearchHandler">
+    <lst name="defaults">
+      <str name="echoParams">explicit</str>
+      <int name="rows">10</int>
+      <str name="df">content</str>
+      <str name="wt">json</str>
+    </lst>
+    <arr name="last-components">
+      <str>semanticMLT</str>
+    </arr>
+  </requestHandler>
+
+  <!-- ── Dedicated /smlt handler ──────────────────────────────────── -->
+  <requestHandler name="/smlt" class="solr.SearchHandler">
+    <lst name="defaults">
+      <str name="echoParams">explicit</str>
+      <bool name="smlt">true</bool>
+      <str name="q">*:*</str>
+      <int name="rows">0</int>
+      <str name="wt">json</str>
+      <str name="indent">true</str>
+    </lst>
+    <arr name="last-components">
+      <str>semanticMLT</str>
+    </arr>
+  </requestHandler>
+
+  <!-- ── Admin handlers ───────────────────────────────────────────── -->
+  <requestHandler name="/update" class="solr.UpdateRequestHandler" />
+
+  <requestHandler name="/admin/ping" class="solr.PingRequestHandler">
+    <lst name="invariants">
+      <str name="q">*:*</str>
+    </lst>
+  </requestHandler>
+
+  <queryResponseWriter name="json" class="solr.JSONResponseWriter">
+    <str name="content-type">application/json; charset=UTF-8</str>
+  </queryResponseWriter>
+
+</config>
