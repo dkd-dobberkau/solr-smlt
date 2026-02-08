@@ -92,13 +92,38 @@ solr-smlt/
 ├── src/main/java/.../SemanticMoreLikeThisComponent.java
 ├── docker-compose.yml                               # Build + deploy orchestration
 ├── docker/
-│   ├── solr/configsets/smlt_demo/conf/
-│   │   ├── solrconfig.xml                           # Component registration + handlers
-│   │   ├── schema.xml                               # Vector + text fields
+│   ├── solr/configsets/smlt_demo/conf/              # Demo configset (8-dim vectors)
+│   │   ├── solrconfig.xml
+│   │   ├── schema.xml
 │   │   └── stopwords.txt
 │   └── sample-data/
 │       └── documents.json                           # 12 docs across 4 categories
-└── test-smlt.sh                                     # Smoke test suite
+├── test-smlt.sh                                     # Smoke test suite
+├── typo3-extension/                                 # TYPO3 extension (dkd/solr-semantic-mlt)
+│   ├── composer.json
+│   ├── ext_emconf.php
+│   ├── ext_localconf.php
+│   ├── Classes/
+│   │   ├── Controller/
+│   │   │   └── SimilarContentController.php         # Content plugin controller
+│   │   ├── Service/
+│   │   │   └── SmltService.php                      # Solr /smlt API client
+│   │   └── ViewHelpers/
+│   │       └── SimilarContentViewHelper.php         # Fluid ViewHelper
+│   ├── Configuration/
+│   │   ├── FlexForms/SimilarContent.xml             # Plugin settings (count, mode, weights)
+│   │   ├── TCA/Overrides/tt_content.php
+│   │   └── TypoScript/
+│   ├── Resources/Private/
+│   │   ├── Solr/configsets/ext_solr_smlt_13_1_0/    # EXT:solr configset with SMLT
+│   │   │   ├── conf/solrconfig.xml                  # Stock + SMLT component + textToVector URP
+│   │   │   ├── conf/general_schema_fields.xml       # Stock + vector field (stored=true)
+│   │   │   ├── conf/{language}/schema.xml           # Per-language schemas (40+ languages)
+│   │   │   └── typo3lib/                            # SMLT + access filter JARs
+│   │   └── Templates/SimilarContent/Show.html
+│   └── Documentation/Setup.md                       # Installation & setup guide
+└── docs/
+    └── plans/                                       # Design documents
 ```
 
 ## Requirements
