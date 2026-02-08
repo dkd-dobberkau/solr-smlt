@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - run: mvn clean package -DskipTests -q
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: solr-semantic-mlt
+          path: target/solr-semantic-mlt-*.jar
